@@ -1,0 +1,41 @@
+body {
+    border: 1px solid #878484;
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif;
+    padding: 20px;
+    margin: 50px;
+    align-content: center;
+}
+.content {
+margin: 0px 300px;
+}
+
+.missionstatement h1 {
+    font-size: 50px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.missionstatement h2 {
+    font-size: 25px;
+    text-transform: uppercase;
+    text-align: center;
+    color: #006EB6;
+    letter-spacing: 2px;
+    border-bottom: 1px solid lightgrey;
+}
+
+#p1 {
+    margin-top: 50px; 
+}
+
+.missionlist li {
+    line-height: 180%;
+}
+
+img {
+width: 150px;
+display: block;
+margin: 0 auto;
+padding-top: 20px;
+}
