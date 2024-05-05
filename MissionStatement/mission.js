@@ -1,0 +1,1 @@
+const themeSelector = document.getElementById('theme')
