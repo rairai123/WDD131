@@ -1,26 +1,50 @@
 @import url("https://fonts.googleapis.com/css2?family=Mooli&display=swap") body {
   font-family: "Mooli", "Arial", "Helvetica";
 }
+
 header {
-  background-color: blueviolet;
+  background-color: rgb(130, 89, 251);
 }
+
 header img {
   width: 25px;
 }
 
+.head {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+}
+
+.title p {
+  text-align: center;
+  font-size: 30px;
+}
+
+nav a {
+  text-align: center;
+  color: #6ccff6;
+  text-decoration: none;
+  font-family: "Lobster", "Times New Roman";
+  padding: 35px;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+  font-size: 20px;
+}
+
 footer {
-  background-color: blueviolet;
+  background-color: rgb(130, 89, 251);
 }
 
 .pictures {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr;
   align-items: center;
 }
 
 .design_card img {
-  width: 350px;
+  width: 250px;
+  height: 250px;
   background-color: #ffffff;
   box-shadow: 10px 10px 15px #c5cce0;
   border: 10px solid rgba(239, 241, 197, 0.462);
@@ -32,4 +56,10 @@ footer {
 .design_card img:hover {
   opacity: 0.3;
   transform: scale(1.1);
+}
+
+@media screen and (min-width: 700px) {
+  .pictures {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 }
