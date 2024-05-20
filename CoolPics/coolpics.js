@@ -30,22 +30,31 @@ function viewerTemplate(imagePath, altText) {
 }
 
 function viewHandler(event) {
-  const clickedImage = event.target.closest(".gallery img");
+  const clickedImage = event.target.closest(".pictures .design_card img");
   if (!clickedImage) return;
 
-  const imagePath = clickedImage.getAttribute("src").replace("-thumb", "-full");
+  // Get the source attribute of the clicked image
+  const imagePath = clickedImage.getAttribute("src");
+
+  // Split the image path on the last "/"
+  const parts = imagePath.split("/");
+
+  // Get the last part of the split array, which is the filename
+  let fileName = parts[parts.length - 1];
+
+  // Replace "-thumb" with "-full" in the filename
+  fileName = fileName.replace("-thumb", "-full");
+
+  // Reconstruct the image path with the modified filename
+  const fullImagePath = parts.slice(0, -1).join("/") + "/" + fileName;
+
   const altText = clickedImage.getAttribute("alt");
 
-  const viewerHTML = viewerTemplate(imagePath, altText);
+  const viewerHTML = viewerTemplate(fullImagePath, altText);
   document.body.insertAdjacentHTML("afterbegin", viewerHTML);
 
   const closeButton = document.querySelector(".close-viewer");
   closeButton.addEventListener("click", closeViewer);
-}
-
-function closeViewer() {
-  const viewer = document.querySelector(".viewer");
-  viewer.remove();
 }
 
 document.querySelector(".gallery").addEventListener("click", viewHandler);
