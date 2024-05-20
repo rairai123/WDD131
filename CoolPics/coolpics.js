@@ -1,6 +1,9 @@
 // script.js
+const menuButton = document.querySelector(".menu-button");
+
 function toggleMenu() {
-    const navMenu = document.getElementById('nav-menu');
-    navMenu.classList.toggle('active');
-  }
-  
+  const menu = document.querySelector("nav");
+  menu.classList.toggle("active");
+}
+
+menuButton.addEventListener("click", toggleMenu);
