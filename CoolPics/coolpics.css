@@ -102,3 +102,35 @@ footer {
     grid-template-columns: 1fr 1fr 1fr;
   }
 }
+
+.viewer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: grid;
+  place-items: center;
+}
+
+.viewer img {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.close-viewer {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: white;
+  background-color: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 1; /* Ensure the close button is above the image */
+}
+
+.close-viewer:hover {
+  color: red; /* Change color on hover */
+}
