@@ -1,4 +1,3 @@
-// script.js
 const menuButton = document.querySelector(".menu-button");
 
 function toggleMenu() {
@@ -22,10 +21,10 @@ window.addEventListener("resize", handleResize); // Add event listener for windo
 
 function viewerTemplate(imagePath, altText) {
   return `
-    <div class="viewer">
-      <button class="close-viewer">X</button>
-      <img src="${imagePath}" alt="${altText}">
-    </div>
+<div class="viewer">
+<button class="close-viewer">X</button>
+<img src="${imagePath}" alt="${altText}">
+</div>
   `;
 }
 
@@ -33,28 +32,31 @@ function viewHandler(event) {
   const clickedImage = event.target.closest(".pictures .design_card img");
   if (!clickedImage) return;
 
-  // Get the source attribute of the clicked image
   const imagePath = clickedImage.getAttribute("src");
-
-  // Split the image path on the last "/"
-  const parts = imagePath.split("/");
-
-  // Get the last part of the split array, which is the filename
-  let fileName = parts[parts.length - 1];
-
-  // Replace "-thumb" with "-full" in the filename
-  fileName = fileName.replace("-thumb", "-full");
-
-  // Reconstruct the image path with the modified filename
-  const fullImagePath = parts.slice(0, -1).join("/") + "/" + fileName;
-
   const altText = clickedImage.getAttribute("alt");
 
-  const viewerHTML = viewerTemplate(fullImagePath, altText);
-  document.body.insertAdjacentHTML("afterbegin", viewerHTML);
+  const viewer = document.createElement("div");
+  viewer.classList.add("viewer");
 
-  const closeButton = document.querySelector(".close-viewer");
+  const img = document.createElement("img");
+  img.src = imagePath;
+  img.alt = altText;
+
+  const closeButton = document.createElement("button");
+  closeButton.classList.add("close-viewer");
+  closeButton.textContent = "X";
   closeButton.addEventListener("click", closeViewer);
+
+  viewer.appendChild(img);
+  viewer.appendChild(closeButton);
+  document.body.appendChild(viewer);
 }
 
-document.querySelector(".gallery").addEventListener("click", viewHandler);
+function closeViewer() {
+  const viewer = document.querySelector(".viewer");
+  if (viewer) {
+    viewer.remove();
+  }
+}
+
+document.querySelector(".pictures").addEventListener("click", viewHandler);
