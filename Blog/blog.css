@@ -42,9 +42,7 @@ main {
 }
 
 .book-review {
-  flex: 3;
-  display: flex;
-  gap: 20px;
+  display: block; /* Changed from flex */
   margin-bottom: 30px;
 }
 
@@ -52,6 +50,7 @@ main {
   text-align: left;
   font-size: 1rem;
   line-height: 1.5;
+  margin-bottom: 10px; /* Added margin-bottom */
 }
 
 .book-content {
@@ -67,6 +66,7 @@ main {
   max-width: 100%;
   height: auto;
   border: 1px solid #ddd;
+  margin-bottom: 10px; /* Added margin-bottom */
 }
 
 .book-content p {
