@@ -1,68 +1,106 @@
 import recipes from "./recipes.mjs";
 
-const searchForm = document.getElementById("search-form");
-const searchInput = document.getElementById("search-input");
-const recipeContainer = document.getElementById("recipe-container");
+function random(num) {
+  return Math.floor(Math.random() * num);
+}
 
-function displayRecipes(recipesToShow) {
-  recipeContainer.innerHTML = "";
-  recipesToShow.forEach((recipe) => {
-    const recipeCard = document.createElement("div");
-    recipeCard.classList.add("recipe-card");
+function getRandomListEntry(list) {
+  const listLength = list.length;
+  const randomNum = random(listLength);
+  return list[randomNum];
+}
 
-    const ratingStars = createRatingStars(recipe.rating);
-
-    recipeCard.innerHTML = `
-            <img src="${recipe.image}" alt="${recipe.name}">
-            <div class="tags">
-                ${recipe.tags
-                  .map((tag) => `<span class="tag">${tag}</span>`)
-                  .join("")}
-            </div>
-            <h2>${recipe.name}</h2>
-            <div class="rating" aria-label="Rating: ${
-              recipe.rating
-            } out of 5 stars">
-                ${ratingStars}
-            </div>
-            <p class="recipe-description">${recipe.description}</p>
-            <p>Cook Time: ${recipe.cookTime}</p>
-            <p>Prep Time: ${recipe.prepTime}</p>
-            <p>Author: ${recipe.author}</p>
-        `;
-
-    recipeContainer.appendChild(recipeCard);
+function tagsTemplate(tags) {
+  let html = "";
+  tags.forEach((tag) => {
+    html += `<li>${tag}</li>`;
   });
+  return html;
 }
 
-function createRatingStars(rating) {
-  const fullStars = Math.floor(rating);
-  const halfStar = rating % 1 >= 0.5;
-  const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
+function ratingTemplate(rating) {
+  let html = `<span
+    class="rating"
+    role="img"
+    aria-label="Rating: ${rating} out of 5 stars"
+    >`;
 
-  return `
-        ${'<i class="fas fa-star"></i>'.repeat(fullStars)}
-        ${halfStar ? '<i class="fas fa-star-half-alt"></i>' : ""}
-        ${'<i class="far fa-star"></i>'.repeat(emptyStars)}
-    `;
-}
-function filterRecipes(searchTerm) {
-  return recipes.filter(
-    (recipe) =>
-      recipe.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      recipe.tags.some((tag) =>
-        tag.toLowerCase().includes(searchTerm.toLowerCase())
-      ) ||
-      recipe.author.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  for (let i = 1; i <= 5; i++) {
+    if (i <= rating) {
+      html += `<span aria-hidden="true" class="icon-star">⭐</span>`;
+    } else {
+      html += `<span aria-hidden="true" class="icon-star-empty">☆</span>`;
+    }
+  }
+
+  html += `</span>`;
+  return html;
 }
 
-searchForm.addEventListener("submit", (e) => {
+function recipeTemplate(recipe) {
+  return `<figure class="recipe">
+    <img src="${recipe.image}" alt="${recipe.name}" />
+    <figcaption>
+        <ul class="recipe__tags">
+            ${tagsTemplate(recipe.tags)}
+        </ul>
+        <h2><a href="#">${recipe.name}</a></h2>
+        <p class="recipe__ratings">
+            ${ratingTemplate(recipe.rating)}
+        </p>
+        <p class="recipe__description">
+            ${recipe.description}
+        </p>
+    </figcaption>
+    </figure>`;
+}
+
+
+const recipe = getRandomListEntry(recipes);
+console.log(recipeTemplate(recipe));
+
+
+function renderRecipes(recipeList) {
+  const recipeContainer = document.getElementById("recipe-container");
+  const recipesHtml = recipeList
+    .map((recipe) => recipeTemplate(recipe))
+    .join("");
+  recipeContainer.innerHTML = recipesHtml;
+}
+
+function init() {
+  const recipe = getRandomListEntry(recipes);
+  renderRecipes([recipe]);
+}
+
+function filterRecipes(query) {
+  return recipes
+    .filter(
+      (recipe) =>
+        recipe.name.toLowerCase().includes(query) ||
+        recipe.description.toLowerCase().includes(query) ||
+        recipe.tags.some((tag) => tag.toLowerCase().includes(query)) ||
+        recipe.recipeIngredient.some((ingredient) =>
+          ingredient.toLowerCase().includes(query)
+        )
+    )
+    .sort((a, b) => a.name.localeCompare(b.name));
+}
+
+function searchHandler(e) {
   e.preventDefault();
-  const searchTerm = searchInput.value.trim();
-  const filteredRecipes = filterRecipes(searchTerm);
-  displayRecipes(filteredRecipes);
-});
+  const searchInput = document.getElementById("search-input");
+  const query = searchInput.value.trim().toLowerCase();
+  const filteredRecipes = filterRecipes(query);
+  renderRecipes(filteredRecipes);
+}
 
-// Initial display of all recipes
-displayRecipes(recipes);
+
+const searchForm = document.getElementById("search-form");
+searchForm.addEventListener("submit", searchHandler);
+
+
+init();
+
+
+console.log(recipeTemplate(getRandomListEntry(recipes)));
