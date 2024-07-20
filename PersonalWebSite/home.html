@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie Review Site - Home</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <img src="images/logo-main.png" alt="Movie Review Site Logo" />
+      </div>
+      <nav>
+        <ul>
+          <li><a href="home.html">HOME</a></li>
+          <li><a href="movies.html">MOVIES</a></li>
+          <li><a href="reviews.html">REVIEWS</a></li>
+        </ul>
+      </nav>
+      <div class="search-bar">
+        <input type="text" placeholder="Search..." />
+        <button>Search</button>
+      </div>
+    </header>
+
+    <main>
+      <section id="home" class="active">
+        <div class="featured-movie">
+          <div class="slideshow-container">
+            <img
+              src="images/KingKingdom-of-the-Planet-of-the-Apes-poster.jpg"
+              alt="Kingdom of the Planet of the Apes"
+              class="slide"
+            />
+            <img
+              src="images/inside_out_2.avif"
+              alt="Inside Out 2"
+              class="slide"
+            />
+            <img
+              src="images/quiet_place_day_one.avif"
+              alt="A Quiet Place: Day One"
+              class="slide"
+            />
+            <img
+              src="images/the_watchers.avif"
+              alt="The Watchers"
+              class="slide"
+            />
+            <img
+              src="images/garfield_movie.webp"
+              alt="The Garfield Movie"
+              class="slide"
+            />
+            <img src="images/dune_2.jpeg" alt="Dune: Part Two" class="slide" />
+            <img src="images/madame_web.jpg" alt="Madame Web" class="slide" />
+            <img
+              src="images/ghostbusters_frozen_empire.jpg"
+              alt="Ghostbusters: Frozen Empire"
+              class="slide"
+            />
+          </div>
+        </div>
+        <div class="description">
+          <p>
+            CineCritic is the ultimate movie reviews platform, offering a unique
+            blend of expert critiques, interactive previews, and vibrant
+            community discussions. We're passionate about bringing the world of
+            cinema to life, helping you discover your next favorite film.
+            Whether you're a casual moviegoer or a dedicated cinephile,
+            CineCritic is your go-to source for all things film. Dive into the
+            world of cinema with us and elevate your movie-watching experience!
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-content">
+        <p>CineCritic © 2024 - Laerry Mahonri Manago</p>
+        <div class="social-icons">
+          <a href="#" aria-label="Facebook"
+            ><i class="fab fa-facebook-square"></i
+          ></a>
+          <a href="#" aria-label="Twitter"
+            ><i class="fab fa-twitter-square"></i
+          ></a>
+          <a href="#" aria-label="Instagram"
+            ><i class="fab fa-instagram"></i
+          ></a>
+          <a href="#" aria-label="Email"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+    </footer>
+
+    <script type="module" src="main.js"></script>
+    <script src="slideshow.js"></script>
+  </body>
+</html>
