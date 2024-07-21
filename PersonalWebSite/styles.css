@@ -261,26 +261,44 @@ footer {
 @media screen and (max-width: 768px) {
   header {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    text-align: center;
+  }
+
+  .logo {
+    margin-bottom: 1rem;
   }
 
   nav ul {
-    margin-top: 1rem;
     flex-direction: column;
+    align-items: center;
   }
 
   nav ul li {
     margin-right: 0;
     margin-bottom: 0.5rem;
+    width: 100%;
+  }
+
+  nav ul li a {
+    display: block;
+    padding: 0.5rem 0;
+    font-size: 1.2rem; /* Increased font size for better tappability */
   }
 
   .search-bar {
     margin-top: 1rem;
     width: 100%;
+    display: flex;
+    justify-content: center;
   }
 
   .search-bar input {
-    flex-grow: 1;
+    width: 70%;
+  }
+
+  .search-bar button {
+    width: 30%;
   }
 
   .movie-grid {
@@ -300,5 +318,17 @@ footer {
 @media screen and (max-width: 480px) {
   .movie-grid {
     grid-template-columns: 1fr;
+  }
+
+  nav ul li a {
+    font-size: 1.3rem; /* Further increased font size for smallest screens */
+  }
+
+  .search-bar input {
+    width: 60%;
+  }
+
+  .search-bar button {
+    width: 40%;
   }
 }
