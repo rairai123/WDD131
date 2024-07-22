@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
       slideIndex = 1;
     }
     slides[slideIndex - 1].classList.add("active");
-    setTimeout(showSlides, 2000); // Change image every 5 seconds
+    setTimeout(showSlides, 2000); // Change image every 2 seconds
   }
 
   showSlides();
